@@ -31,7 +31,9 @@ public class RayCastShooting : MonoBehaviour
 
     //For the Particle System 
 
-    public ParticleSystem MuzzleFlash;
+    public ParticleSystem MuzzleFlash;                  //For the Muzzle flash
+
+    public GameObject ImpactEffect;                     //For when bullet strikes objects
 
 
     void Start()
@@ -93,6 +95,8 @@ public class RayCastShooting : MonoBehaviour
                 LaserLine.SetPosition(1, RayOrigin + (FpsCam.transform.forward * WeaponRange));
             }
 
+            GameObject ImpactGobj = Instantiate(ImpactEffect, Hit.point, Quaternion.LookRotation(Hit.normal));
+            Destroy(ImpactGobj, 2f);
         }
     }
 
